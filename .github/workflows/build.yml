@@ -23,8 +23,8 @@ jobs:
 
       - name: Download Dalamud dev libs
         run: |
-          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
-          Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile dalamud-dev.zip
+          Expand-Archive -Force dalamud-dev.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
 
       - name: Restore
         run: dotnet restore
@@ -34,7 +34,7 @@ jobs:
 
       - name: Package
         if: startsWith(github.ref, 'refs/tags/')
-        run: Compress-Archive -Path .\MerchantTaleAutopilot\bin\Release\net10.0-windows\* -DestinationPath latest.zip
+        run: Compress-Archive -Path .\MerchantTaleAutopilot\bin\Release\net10.0-windows\* -DestinationPath latest.zip -Force
 
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
