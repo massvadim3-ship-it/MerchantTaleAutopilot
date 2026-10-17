@@ -52,7 +52,7 @@ The secret record (13) needs the ritual: right route, seaweed, turn right into t
 
 ## Build
 
-Requirements: **.NET 9 SDK** and Dalamud dev libraries at `%APPDATA%\XIVLauncher\addon\Hooks\dev\`.
+Requirements: **.NET 10 SDK** and Dalamud dev libraries at `%APPDATA%\XIVLauncher\addon\Hooks\dev\`.
 
 ```bash
 git clone https://github.com/massvadim3-ship-it/MerchantTaleAutopilot.git
@@ -60,7 +60,7 @@ cd MerchantTaleAutopilot
 dotnet build -c Release
 ```
 
-Output lands in `MerchantTaleAutopilot/bin/Release/net9.0-windows/`. If your dev libs live elsewhere:
+Output lands in `MerchantTaleAutopilot/bin/Release/net10.0-windows/`. If your dev libs live elsewhere:
 
 ```bash
 dotnet build -c Release -p:DalamudLibPath="D:\dev\dalamud\"
@@ -68,7 +68,7 @@ dotnet build -c Release -p:DalamudLibPath="D:\dev\dalamud\"
 
 ### Load as a dev plugin
 
-1. `/xlsettings` -> **Experimental** -> **Dev Plugin Locations** -> add the full path to `bin/Release/net9.0-windows/`
+1. `/xlsettings` -> **Experimental** -> **Dev Plugin Locations** -> add the full path to `bin/Release/net10.0-windows/`
 2. `/xlplugins` -> **Dev Tools** -> **Load Plugin** -> *Merchant's Tale Autopilot*
 
 ## Release
@@ -99,15 +99,17 @@ repo.json                        custom repository manifest
 
 ## Troubleshooting
 
-**Dalamud refuses to load it.** The manifest declares `"DalamudApiLevel": 14`. Check yours with `/xldev` -> **Dalamud API Level**, set the same number in both JSON files, rebuild.
+**Dalamud refuses to load it.** The manifest declares `"DalamudApiLevel": 15`, matching Dalamud 15 (FFXIV 7.45). Check yours with `/xldev` -> **Dalamud API Level** and set the same number in both JSON files.
 
-**Build fails on `using ImGuiNET;`.** Newer Dalamud builds moved the bindings to `Dalamud.Bindings.ImGui`. Replace the `using ImGuiNET;` line in both window files with:
+**`CS1705: Dalamud uses System.Runtime 10.0.0.0`.** You are building against .NET 9. The plugin targets `net10.0-windows`; install the .NET 10 SDK or let `setup-dotnet` pull `10.0.x`.
+
+**`CS0246: ImGuiNET could not be found`.** Dalamud 15 dropped the old ImGui.NET binding. The plugin already uses the replacement:
 
 ```csharp
 using Dalamud.Bindings.ImGui;
 ```
 
-and drop the `ImGui.NET` / `ImGuiScene` references from the `.csproj`.
+If you add new UI code, import that namespace, not `ImGuiNET`.
 
 ## Credits
 

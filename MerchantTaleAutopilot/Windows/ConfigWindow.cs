@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 
 namespace MerchantTaleAutopilot.Windows;
 
