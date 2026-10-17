@@ -34,7 +34,11 @@ jobs:
 
       - name: Package
         if: startsWith(github.ref, 'refs/tags/')
-        run: Copy-Item .\MerchantTaleAutopilot\bin\Release\net10.0-windows\latest.zip .\latest.zip -Force
+        run: |
+          $zip = Get-ChildItem .\MerchantTaleAutopilot\bin\Release -Recurse -Filter latest.zip | Select-Object -First 1
+          if (-not $zip) { throw "DalamudPackager produced no latest.zip" }
+          Write-Host "packaged from $($zip.FullName)"
+          Copy-Item $zip.FullName .\latest.zip -Force
 
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
