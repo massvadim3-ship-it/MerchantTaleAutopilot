@@ -1,0 +1,24 @@
+[
+  {
+    "Author": "massvadim3-ship-it",
+    "Name": "Merchant's Tale Autopilot",
+    "Punchline": "Route driver for The Merchant's Tale variant dungeon.",
+    "Description": "Tracks all 13 Corvosi Folklore Records step by step. Pick a record, follow the highlighted step, tick it off. Includes boss mechanics and reward reference. Purely informational - it does not move or fight for you.",
+    "InternalName": "MerchantTaleAutopilot",
+    "AssemblyVersion": "1.0.0.0",
+    "RepoUrl": "https://github.com/massvadim3-ship-it/MerchantTaleAutopilot",
+    "ApplicableVersion": "any",
+    "Tags": [
+      "variant dungeon",
+      "guide",
+      "dawntrail"
+    ],
+    "DalamudApiLevel": 14,
+    "DownloadLinkInstall": "https://github.com/massvadim3-ship-it/MerchantTaleAutopilot/releases/latest/download/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/massvadim3-ship-it/MerchantTaleAutopilot/releases/latest/download/latest.zip",
+    "DownloadLinkTesting": "https://github.com/massvadim3-ship-it/MerchantTaleAutopilot/releases/latest/download/latest.zip",
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "LastUpdate": 0
+  }
+]
